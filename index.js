@@ -43,6 +43,13 @@ client.connect(err => {
                 res.send(document)
             })
     })
+    app.get('/tasks', (req, res) => {
+        const remove = req.query.delete;
+        volunteerCollection.deleteOne({ _id: remove })
+            .then((result) => {
+                res.send(result)
+            })
+    })
     app.get('/activities', (req, res) => {
         console.log();
         activytyCollection.find({}).toArray((err, document) => {
