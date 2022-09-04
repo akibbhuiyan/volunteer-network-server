@@ -43,14 +43,7 @@ client.connect(err => {
                 res.send(document)
             })
     })
-    app.get('/admintask', (req, res) => {
-        const remove = req.query.delete;
-        console.log(remove);
-        volunteerCollection.deleteOne({ _id: remove })
-            .then((result) => {
-                res.send(result)
-            })
-    })
+
     app.get('/activities', (req, res) => {
         console.log();
         activytyCollection.find({}).toArray((err, document) => {
@@ -61,6 +54,14 @@ client.connect(err => {
         volunteerCollection.find({}).toArray((err, document) => {
             res.send(document)
         })
+    })
+    app.get('/admintask/delete', (req, res) => {
+        const remove = req.query.delete;
+        console.log(remove);
+        volunteerCollection.deleteOne({ _id: remove })
+            .then((result) => {
+                res.send(result)
+            })
     })
     app.get('/eventTask', (req, res) => {
         volunteerCollection.find({ email: req.query.email }).toArray((err, document) => {
