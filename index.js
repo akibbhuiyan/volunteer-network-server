@@ -43,9 +43,10 @@ client.connect(err => {
                 res.send(document)
             })
     })
-    app.get('/tasks', (req, res) => {
+    app.get('/admintask', (req, res) => {
         const remove = req.query.delete;
-        volunteerCollection.deleteOne({ _id: remove })
+        console.log(remove);
+        volunteerCollection.remove({ _id: remove })
             .then((result) => {
                 res.send(result)
             })
