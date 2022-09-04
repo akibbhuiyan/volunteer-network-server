@@ -36,6 +36,10 @@ client.connect(err => {
                 res.send(result.acknowledged)
             })
     })
+    app.get('/tasks', (req, res) => {
+        const filter = req.query.search;
+        activytyCollection.find({ title: { $regex: filter } })
+    })
     app.get('/activities', (req, res) => {
         console.log();
         activytyCollection.find({}).toArray((err, document) => {
